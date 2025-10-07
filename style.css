@@ -1,281 +1,359 @@
 /* Basic Reset & Font */
 body {
-  font-family: "Poppins", sans-serif; /* Using Poppins for a modern look */
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    #6dd5ed,
-    #2193b0
-  ); /* Soft gradient background */
-  color: #333;
-  overflow-y: auto; /* Allow scrolling if content is too tall */
+    font-family: 'Poppins', sans-serif; /* Using Poppins for a modern look */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Soft gradient background */
+    color: #333;
+    overflow-x: hidden; /* Prevent horizontal scroll on smaller screens */
+    padding: 20px; /* Padding around the entire app */
+    box-sizing: border-box; /* Include padding in element's total width and height */
 }
 
 /* Main Container */
 .container {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
-  text-align: center;
-  width: 90%;
-  max-width: 600px; /* Increased max-width for better layout */
-  margin: 20px auto; /* Add vertical margin for better spacing */
-  box-sizing: border-box; /* Include padding in width calculation */
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    text-align: center;
+    width: 100%; /* Take full width minus padding on smaller screens */
+    max-width: 600px; /* Increased max-width for better layout on larger screens */
+    margin: 0 auto; /* Center horizontally */
+    box-sizing: border-box;
 }
 
 h1 {
-  color: #2193b0; /* Primary accent color */
-  margin-bottom: 30px;
-  font-weight: 700;
-  font-size: 2.2em;
+    color: #2193b0; /* Primary accent color */
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 2.2em;
+    line-height: 1.2; /* Better readability */
 }
 
 /* Settings Panel */
 .settings-panel {
-  background-color: #f8f9fa;
-  padding: 25px;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
+
+    /* Flexbox for settings groups */
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: center; /* Center items when they wrap */
+    gap: 20px; /* Space between setting groups */
 }
 
 .setting-group {
-  display: flex;
-  flex-direction: column; /* Stack label and input */
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* Stack label and input */
+    align-items: center;
+    /* Removed margin-bottom here, using gap on parent instead */
+    flex: 1 1 auto; /* Allow groups to grow and shrink */
+    min-width: 250px; /* Minimum width before wrapping */
 }
 
 .setting-group label {
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 8px;
-  font-size: 1.1em;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+    font-size: 1.1em;
 }
 
-select,
-input[type="number"] {
-  width: 80%; /* Make inputs wider */
-  padding: 12px 15px;
-  border: 1px solid #ced4da;
-  border-radius: 8px;
-  font-size: 1em;
-  outline: none; /* Remove default focus outline */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+select, input[type="number"] {
+    width: 100%; /* Take full width of its parent (.setting-group) */
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
-select:focus,
-input[type="number"]:focus {
-  border-color: #6dd5ed;
-  box-shadow: 0 0 0 3px rgba(109, 213, 237, 0.3);
+select:focus, input[type="number"]:focus {
+    border-color: #6dd5ed;
+    box-shadow: 0 0 0 3px rgba(109, 213, 237, 0.3);
 }
 
 /* Buttons */
 button {
-  background-color: #28a745; /* Green for start */
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.1em;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 15px;
-  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+    background-color: #28a745; /* Green for start */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px; /* More space above button */
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+    width: auto; /* Allow button to size naturally */
+    min-width: 150px; /* Ensure a decent size */
 }
 
 button:hover {
-  background-color: #218838;
-  transform: translateY(-2px); /* Slight lift effect */
-  box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3);
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3);
 }
 
 #restartButton {
-  background-color: #007bff; /* Blue for restart */
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+    background-color: #007bff; /* Blue for restart */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+    margin-top: 30px; /* More space above restart button */
 }
 #restartButton:hover {
-  background-color: #0056b3;
-  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+    background-color: #0056b3;
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
 }
+
 
 /* Quiz Area */
 .quiz-area {
-  background-color: #f9f9f9;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .quiz-header {
-  /* New wrapper for header elements */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap; /* Allow header elements to wrap */
+    gap: 10px; /* Space between header items when wrapped */
 }
 
-.timer-display,
-.question-count {
-  font-size: 1.2em;
-  font-weight: 600;
-  color: #555;
+.timer-display, .question-count {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #555;
+    flex: 1 1 auto; /* Allow items to grow/shrink in header */
+    min-width: 150px; /* Ensure they don't get too small */
 }
+
+.timer-display { text-align: left; }
+.question-count { text-align: right; }
 
 .timer-display span {
-  color: #dc3545; /* Red for timer */
-  font-weight: 700;
+    color: #dc3545; /* Red for timer */
+    font-weight: 700;
 }
 
 #levelDisplay {
-  margin-right: 10px;
-  color: #2193b0; /* Accent color for level */
+    margin-right: 10px;
+    color: #2193b0; /* Accent color for level */
 }
 
 .question-card {
-  /* Wrapper for question and options */
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
 .question {
-  font-size: 2.5em; /* Larger question font */
-  margin-bottom: 30px;
-  color: #2193b0;
-  font-weight: 700;
+    font-size: 2.5em; /* Larger question font */
+    margin-bottom: 30px;
+    color: #2193b0;
+    font-weight: 700;
+    word-break: break-word; /* Prevent long equations from overflowing */
 }
 
+/* Default options layout (desktop: 2x2) */
 .options {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px; /* Increased gap */
-  margin-bottom: 0; /* No margin below options */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 20px; /* Increased gap */
+    margin-bottom: 0;
 }
 
 .option-button {
-  background-color: #e0f2f7; /* Lighter accent color */
-  color: #333;
-  padding: 18px 10px; /* Increased padding */
-  border: 2px solid #b3e0ed; /* Accent border */
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1.4em; /* Larger option text */
-  font-weight: 600;
-  transition: all 0.2s ease;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    background-color: #e0f2f7; /* Lighter accent color */
+    color: #333;
+    padding: 18px 10px; /* Increased padding */
+    border: 2px solid #b3e0ed; /* Accent border */
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.4em; /* Larger option text */
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .option-button:hover {
-  background-color: #c0e6f2;
-  border-color: #6dd5ed;
-  transform: translateY(-3px); /* Lift effect on hover */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #c0e6f2;
+    border-color: #6dd5ed;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .option-button.correct {
-  background-color: #28a745; /* Green */
-  color: white;
-  border-color: #218838;
-  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+    background-color: #28a745; /* Green */
+    color: white;
+    border-color: #218838;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
 }
 
 .option-button.incorrect {
-  background-color: #dc3545; /* Red */
-  color: white;
-  border-color: #c82333;
-  box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+    background-color: #dc3545; /* Red */
+    color: white;
+    border-color: #c82333;
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
 }
 
 .option-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.8; /* Slightly less opaque */
-  transform: none; /* No lift effect when disabled */
-  box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.8;
+    transform: none;
+    box-shadow: none;
 }
 
 /* Results Area */
 .results-area {
-  background-color: #f8f9fa;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .results-area h2 {
-  color: #2193b0;
-  margin-bottom: 20px;
-  font-size: 2em;
+    color: #2193b0;
+    margin-bottom: 20px;
+    font-size: 2em;
 }
 
 .results-area p {
-  font-size: 1.3em;
-  margin-bottom: 12px;
-  color: #555;
-  font-weight: 500;
+    font-size: 1.3em;
+    margin-bottom: 12px;
+    color: #555;
+    font-weight: 500;
 }
 
 .results-area p span {
-  font-weight: 700;
-  color: #333;
+    font-weight: 700;
+    color: #333;
 }
-#correctAnswers {
-  color: #28a745;
-}
-#incorrectAnswers {
-  color: #dc3545;
-}
-#timeTaken {
-  color: #007bff;
-}
+#correctAnswers { color: #28a745; }
+#incorrectAnswers { color: #dc3545; }
+#timeTaken { color: #007bff; }
+
 
 .hidden {
-  display: none !important;
+    display: none !important;
 }
 
-/* Responsive adjustments */
-@media (max-width: 480px) {
-  .container {
-    padding: 25px;
-  }
-  h1 {
-    font-size: 1.8em;
-  }
-  .setting-group {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  select,
-  input[type="number"] {
-    width: 100%;
-  }
-  .quiz-header {
-    flex-direction: column;
-    align-items: center;
-  }
-  .timer-display,
-  .question-count {
-    margin-bottom: 10px;
-    font-size: 1.1em;
-  }
-  .question {
-    font-size: 2em;
-  }
-  .options {
-    grid-template-columns: 1fr; /* Stack options on small screens */
-  }
-  .option-button {
-    font-size: 1.2em;
-    padding: 15px 10px;
-  }
+/* --- Responsive adjustments (Media Queries) --- */
+
+/* For smaller screens (e.g., phones in portrait) */
+@media (max-width: 768px) {
+    body {
+        padding: 15px; /* Reduce overall padding */
+    }
+    .container {
+        padding: 25px; /* Reduce container padding */
+        border-radius: 10px; /* Slightly less rounded corners */
+    }
+    h1 {
+        font-size: 1.8em; /* Smaller title */
+        margin-bottom: 25px;
+    }
+
+    /* Settings Panel adjustments */
+    .settings-panel {
+        padding: 20px;
+        flex-direction: column; /* Stack setting groups vertically */
+        gap: 15px;
+    }
+    .setting-group {
+        min-width: unset; /* Remove min-width to allow full flexibility */
+        width: 100%; /* Take full width */
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+        margin-top: 15px;
+    }
+    #restartButton {
+        margin-top: 25px;
+    }
+
+    /* Quiz Area adjustments */
+    .quiz-area {
+        padding: 25px;
+    }
+    .quiz-header {
+        flex-direction: column; /* Stack timer and question count */
+        align-items: stretch; /* Stretch to fill width */
+        text-align: center;
+        gap: 8px; /* Reduce gap */
+        margin-bottom: 20px;
+    }
+    .timer-display, .question-count {
+        font-size: 1.1em;
+        text-align: center; /* Center align text */
+        width: 100%; /* Take full width */
+    }
+
+    .question-card {
+        padding: 25px 15px; /* Adjust padding */
+    }
+    .question {
+        font-size: 2em; /* Smaller question font */
+        margin-bottom: 25px;
+    }
+
+    /* Answer options: 2 rows, 2 columns on mobile */
+    .options {
+        grid-template-columns: repeat(2, 1fr); /* Still 2 columns */
+        gap: 15px; /* Slightly reduced gap */
+    }
+    .option-button {
+        font-size: 1.2em; /* Slightly smaller option text */
+        padding: 15px 10px;
+        min-height: 60px; /* Ensure buttons have minimum height */
+    }
+
+    /* Results Area adjustments */
+    .results-area {
+        padding: 25px;
+    }
+    .results-area h2 {
+        font-size: 1.8em;
+    }
+    .results-area p {
+        font-size: 1.1em;
+    }
+}
+
+/* For even smaller screens (e.g., iPhone SE, very narrow devices) */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.6em;
+    }
+    .settings-panel, .quiz-area, .results-area {
+        padding: 15px;
+    }
+    .question {
+        font-size: 1.8em;
+    }
+    .option-button {
+        font-size: 1.1em;
+        padding: 12px 8px;
+        min-height: 55px;
+    }
+    .timer-display, .question-count {
+        font-size: 1em;
+    }
 }
