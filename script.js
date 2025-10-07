@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const correctAnswersDisplay = document.getElementById("correctAnswers");
   const incorrectAnswersDisplay = document.getElementById("incorrectAnswers");
   const restartButton = document.getElementById("restartButton");
+  // New element for displaying time taken
+  const timeTakenDisplay = document.getElementById("timeTaken");
 
   let selectedTable = 2;
   let quizQuestions = [];
@@ -23,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let timer;
   let timeLeft;
   let quizDuration;
+  let startTime; // New variable to store the quiz start time
 
   // Event Listeners
   tableSelect.addEventListener("change", (e) => {
@@ -87,8 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
     quizQuestions = generateQuestions(selectedTable);
     currentQuestionIndex = 0;
     correctCount = 0;
-    incorrectCount = 0; // This will now typically be 0 or 1
+    incorrectCount = 0;
     timeLeft = quizDuration;
+    startTime = Date.now(); // Record the start time when the quiz begins
 
     settingsArea.classList.add("hidden");
     resultsArea.classList.add("hidden");
@@ -164,13 +168,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function endQuiz() {
-    clearInterval(timer); // Ensure timer is stopped if it's not already (e.g., from timer running out)
+    clearInterval(timer);
+    const endTime = Date.now(); // Record the end time
+    const timeTaken = Math.floor((endTime - startTime) / 1000); // Calculate time in seconds
+
     quizArea.classList.add("hidden");
     settingsArea.classList.add("hidden");
     resultsArea.classList.remove("hidden");
 
     correctAnswersDisplay.textContent = correctCount;
-    incorrectAnswersDisplay.textContent = incorrectCount; // Will be 1 if stopped by wrong answer, or 0 if all correct/time ran out
+    incorrectAnswersDisplay.textContent = incorrectCount;
+    timeTakenDisplay.textContent = timeTaken; // Display the time taken
   }
 
   function resetQuiz() {
@@ -183,6 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentQuestionIndex = 0;
     correctCount = 0;
     incorrectCount = 0;
+    startTime = 0; // Reset startTime
   }
 
   // Initial setup
