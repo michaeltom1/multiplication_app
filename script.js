@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("currentQuestionNum");
   const questionDisplay = document.getElementById("question");
   const optionsContainer = document.getElementById("options");
-  // Removed nextButton since it's no longer used
   const correctAnswersDisplay = document.getElementById("correctAnswers");
   const incorrectAnswersDisplay = document.getElementById("incorrectAnswers");
   const restartButton = document.getElementById("restartButton");
@@ -31,14 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   startButton.addEventListener("click", startQuiz);
-  // nextButton.addEventListener('click', showNextQuestion); // Removed this listener
   restartButton.addEventListener("click", resetQuiz);
 
   // --- Quiz Logic Functions ---
 
   function generateQuestions(table, count = 12) {
     const questions = [];
-    // Generate all possible questions for the table (1xTable to 12xTable)
     for (let i = 1; i <= count; i++) {
       const num1 = i;
       const num2 = table;
@@ -48,21 +45,18 @@ document.addEventListener("DOMContentLoaded", () => {
         correctAnswer: correctAnswer,
       });
     }
-    return shuffleArray(questions); // Randomize the order of questions
+    return shuffleArray(questions);
   }
 
   function generateOptions(correctAnswer) {
     const options = new Set();
-    options.add(correctAnswer); // Always include the correct answer
+    options.add(correctAnswer);
 
-    // Generate 3 random incorrect options
     while (options.size < 4) {
       let incorrectOption;
-      // Generate numbers around the correct answer, but not too close or too far
-      const diff = Math.floor(Math.random() * 10) - 5; // -5 to +4 difference
+      const diff = Math.floor(Math.random() * 10) - 5;
       incorrectOption = correctAnswer + diff;
 
-      // Ensure options are positive and not the correct answer, and somewhat distinct
       if (
         incorrectOption > 0 &&
         incorrectOption !== correctAnswer &&
@@ -71,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
         options.add(incorrectOption);
       }
     }
-
     return shuffleArray(Array.from(options));
   }
 
@@ -94,13 +87,12 @@ document.addEventListener("DOMContentLoaded", () => {
     quizQuestions = generateQuestions(selectedTable);
     currentQuestionIndex = 0;
     correctCount = 0;
-    incorrectCount = 0;
+    incorrectCount = 0; // This will now typically be 0 or 1
     timeLeft = quizDuration;
 
     settingsArea.classList.add("hidden");
     resultsArea.classList.add("hidden");
     quizArea.classList.remove("hidden");
-    // nextButton.classList.add('hidden'); // No longer needed as button is removed
 
     startTimer();
     showQuestion();
@@ -121,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function showQuestion() {
     // If all questions answered, end quiz
     if (currentQuestionIndex >= quizQuestions.length) {
-      clearInterval(timer); // Stop timer immediately if all questions are done
+      clearInterval(timer);
       endQuiz();
       return;
     }
@@ -131,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     questionDisplay.innerHTML = q.question;
     optionsContainer.innerHTML = ""; // Clear previous options
 
-    const optionsForCurrentQuestion = generateOptions(q.correctAnswer); // Generate options each time
+    const optionsForCurrentQuestion = generateOptions(q.correctAnswer);
 
     optionsForCurrentQuestion.forEach((option) => {
       const button = document.createElement("button");
@@ -157,27 +149,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (parseInt(chosenAnswer) === correctAnswer) {
       correctCount++;
-    } else {
-      incorrectCount++;
-    }
-
-    // Automatically advance to the next question after a short delay for visual feedback
-    setTimeout(() => {
+      // If correct, proceed to next question
       currentQuestionIndex++;
       showQuestion();
-    }, 1000); // 1 second delay
+    } else {
+      // If incorrect, stop the quiz immediately
+      incorrectCount++; // Mark one incorrect answer
+      clearInterval(timer); // Stop the timer
+      setTimeout(() => {
+        // Give a small delay to see the red feedback
+        endQuiz();
+      }, 1000); // 1-second delay before showing results
+    }
   }
 
-  // showNextQuestion is no longer needed as handleAnswer directly advances
-
   function endQuiz() {
-    clearInterval(timer);
+    clearInterval(timer); // Ensure timer is stopped if it's not already (e.g., from timer running out)
     quizArea.classList.add("hidden");
     settingsArea.classList.add("hidden");
     resultsArea.classList.remove("hidden");
 
     correctAnswersDisplay.textContent = correctCount;
-    incorrectAnswersDisplay.textContent = incorrectCount;
+    incorrectAnswersDisplay.textContent = incorrectCount; // Will be 1 if stopped by wrong answer, or 0 if all correct/time ran out
   }
 
   function resetQuiz() {
@@ -185,9 +178,9 @@ document.addEventListener("DOMContentLoaded", () => {
     settingsArea.classList.remove("hidden");
     quizArea.classList.add("hidden");
     resultsArea.classList.add("hidden");
-    timerDurationInput.value = 30; // Reset timer input
-    tableSelect.value = 2; // Reset table selection
-    currentQuestionIndex = 0; // Ensure index is reset
+    timerDurationInput.value = 30;
+    tableSelect.value = 2;
+    currentQuestionIndex = 0;
     correctCount = 0;
     incorrectCount = 0;
   }
