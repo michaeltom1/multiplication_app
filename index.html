@@ -5,14 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiplication Table Quiz</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Optional: Google Fonts for a nicer font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- PWA: Add manifest link -->
+    <link rel="manifest" href="manifest.json">
+    <!-- PWA: Add Apple touch icon (optional but good for iOS) -->
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <!-- PWA: Theme color for browser UI -->
+    <meta name="theme-color" content="#2193b0">
 </head>
 <body>
     <div class="container">
         <h1>Multiplication Table Quiz</h1>
 
-        <div class="settings-panel"> <!-- New class for settings section -->
+        <div class="settings-panel">
             <div class="setting-group">
                 <label for="tableSelect">Choose Table:</label>
                 <select id="tableSelect">
@@ -40,14 +46,14 @@
         </div>
 
         <div class="quiz-area hidden">
-            <div class="quiz-header"> <!-- New wrapper for timer and question count -->
+            <div class="quiz-header">
                 <div class="timer-display">Time Left: <span id="time">0</span>s</div>
                 <div class="question-count">
                     <span id="levelDisplay">Level: <span id="currentLevel">N/A</span> | </span>
                     Question: <span id="currentQuestionNum">1</span> / 12
                 </div>
             </div>
-            <div class="question-card"> <!-- New wrapper for question and options -->
+            <div class="question-card">
                 <div class="question" id="question"></div>
                 <div class="options" id="options">
                     <!-- Options will be dynamically generated here -->
