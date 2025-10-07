@@ -1,0 +1,153 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+
+h1 {
+    color: #007bff;
+    margin-bottom: 25px;
+}
+
+.settings, .quiz-area, .results-area {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+select, input[type="number"] {
+    padding: 8px;
+    margin-right: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.quiz-area {
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.timer-display, .question-count {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.timer-display span {
+    color: #dc3545;
+}
+
+.question {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.option-button {
+    background-color: #e9ecef;
+    color: #333;
+    padding: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.option-button:hover {
+    background-color: #dee2e6;
+    border-color: #adb5bd;
+}
+
+.option-button.correct {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.option-button.incorrect {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.option-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+#nextButton {
+    background-color: #007bff;
+    margin-top: 0;
+}
+
+#nextButton:hover {
+    background-color: #0056b3;
+}
+
+.results-area h2 {
+    color: #28a745;
+}
+
+.results-area p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+#restartButton {
+    background-color: #6c757d;
+}
+
+#restartButton:hover {
+    background-color: #5a6268;
+}
+
+.hidden {
+    display: none;
+}

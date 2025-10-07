@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Multiplication Table Quiz</h1>
+
+        <div class="settings">
+            <label for="tableSelect">Choose Table:</label>
+            <select id="tableSelect">
+                <option value="2">Table of 2</option>
+                <option value="3">Table of 3</option>
+                <option value="4">Table of 4</option>
+                <option value="5">Table of 5</option>
+                <option value="6">Table of 6</option>
+                <option value="7">Table of 7</option>
+                <option value="8">Table of 8</option>
+                <option value="9">Table of 9</option>
+                <option value="10">Table of 10</option>
+                <option value="11">Table of 11</option>
+                <option value="12">Table of 12</option>
+            </select>
+
+            <label for="timerDuration">Timer (seconds):</label>
+            <input type="number" id="timerDuration" value="30" min="10" max="120">
+
+            <button id="startButton">Start Quiz</button>
+        </div>
+
+        <div class="quiz-area hidden">
+            <div class="timer-display">Time Left: <span id="time">0</span>s</div>
+            <div class="question-count">Question: <span id="currentQuestionNum">1</span> / 12</div>
+            <div class="question" id="question"></div>
+            <div class="options" id="options">
+                <!-- Options will be dynamically generated here -->
+            </div>
+            <button id="nextButton" class="hidden">Next Question</button>
+        </div>
+
+        <div class="results-area hidden">
+            <h2>Quiz Results</h2>
+            <p>Correct Answers: <span id="correctAnswers">0</span></p>
+            <p>Incorrect Answers: <span id="incorrectAnswers">0</span></p>
+            <button id="restartButton">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
