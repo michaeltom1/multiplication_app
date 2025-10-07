@@ -6,14 +6,13 @@ const urlsToCache = [
   "./script.js",
   "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap", // Google Fonts CSS
   // Add your icon paths here
-  "./icons/icon-72x72.png",
-  "./icons/icon-96x96.png",
-  "./icons/icon-128x128.png",
-  "./icons/icon-144x144.png",
-  "./icons/icon-152x152.png",
-  "./icons/icon-192x192.png",
-  "./icons/icon-384x384.png",
-  "./icons/icon-512x512.png",
+  "./icons/android-chrome-192x192.png",
+  "./icons/android-chrome-512x512.png",
+  "./icons/apple-touch-icon.png",
+  "./icons/favicon-16x16.png",
+  "./icons/favicon-32x32.png",
+  "./icons/favicon.ico",
+
 ];
 
 // Install event: Caches all the necessary assets
